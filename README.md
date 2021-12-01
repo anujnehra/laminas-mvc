@@ -224,3 +224,6 @@ $ composer test
 ## unit test
 
 https://docs.laminas.dev/tutorials/unit-testing/
+
+## URL FOR BEER [CRUD OPERATIONS]
+http://localhost/laminas/public/beer
