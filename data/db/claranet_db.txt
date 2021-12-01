@@ -1,0 +1,138 @@
+
+
+--
+-- Database: `claranet_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beers`
+--
+
+CREATE TABLE `beers` (
+  `id` int(11) NOT NULL,
+  `brewery_id` int(11) NOT NULL,
+  `name` varchar(155) NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `style_id` int(11) NOT NULL,
+  `abv` int(11) NOT NULL,
+  `ibu` int(11) NOT NULL,
+  `srm` int(11) NOT NULL,
+  `upc` int(11) NOT NULL,
+  `filepath` varchar(155) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beer_category`
+--
+
+CREATE TABLE `beer_category` (
+  `id` int(11) NOT NULL,
+  `cat_name` varchar(155) NOT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `beer_style`
+--
+
+CREATE TABLE `beer_style` (
+  `id` int(11) NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `style_name` varchar(155) NOT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `breweries`
+--
+
+CREATE TABLE `breweries` (
+  `id` int(11) NOT NULL,
+  `name` varchar(155) NOT NULL,
+  `city` varchar(155) NOT NULL,
+  `country` varchar(155) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `filepath` varchar(155) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `last_modified` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `beers`
+--
+ALTER TABLE `beers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_breweries_id` (`brewery_id`),
+  ADD KEY `fk_category_id` (`cat_id`);
+
+--
+-- Indexes for table `beer_category`
+--
+ALTER TABLE `beer_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `beer_style`
+--
+ALTER TABLE `beer_style`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `breweries`
+--
+ALTER TABLE `breweries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `beers`
+--
+ALTER TABLE `beers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `beer_category`
+--
+ALTER TABLE `beer_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `beer_style`
+--
+ALTER TABLE `beer_style`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `breweries`
+--
+ALTER TABLE `breweries`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `beers`
+--
+ALTER TABLE `beers`
+  ADD CONSTRAINT `fk_breweries_id` FOREIGN KEY (`brewery_id`) REFERENCES `breweries` (`id`),
+  ADD CONSTRAINT `fk_category_id` FOREIGN KEY (`cat_id`) REFERENCES `beer_category` (`id`);
+
