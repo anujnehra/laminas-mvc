@@ -60,5 +60,5 @@ control. (If you want to make the modifications permanent, edit the
 
 https://docs.laminas.dev/tutorials/unit-testing/
 
-## URL FOR BEER [CRUD OPERATIONS]
+## URL FOR BEER [CRUD OPERATION]
 http://localhost/laminas/public/beer
