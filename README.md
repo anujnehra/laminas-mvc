@@ -65,3 +65,7 @@ http://localhost/laminas/public/beer
 
 ## SQL file dump
 - data - db - .sql dump
+
+## info on SQL
+future scope for consumption of json data 
+see .txt file in DB folder and change data type to store float value
